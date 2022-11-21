@@ -31,8 +31,8 @@ const Header = () => {
 
             </div>
             <div className='navbar-end'>
-                <input type="checkbox" className="toggle" checked />
-                <Link>Log In</Link>
+                <input type="checkbox" className="toggle" />
+                <Link to='/login'>Log In</Link>
             </div>
         </div>
     );

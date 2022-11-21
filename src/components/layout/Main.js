@@ -12,7 +12,7 @@ const Main = () => {
                     <div className="col-span-2 bg-purple-200">
                         <LeftSideNavBar></LeftSideNavBar>
                     </div>
-                    <div className="col-span-8 bg-purple-300">
+                    <div className="col-span-8">
                         <Outlet></Outlet>
                     </div>
                 </div>
