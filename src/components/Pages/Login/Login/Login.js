@@ -1,10 +1,12 @@
 import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
-    const { signInUser, signInWithGoogle } = useContext(AuthContext);
-    const [error, setError] = useState('')
+    const { signInUser, signInWithGoogle, resetPassword } = useContext(AuthContext);
+    const [error, setError] = useState('');
+    const [userEmail, setUserEmail] = useState('')
     const navigate = useNavigate()
     const handleSignIn = (e) => {
         e.preventDefault();
@@ -18,6 +20,7 @@ const Login = () => {
                 // console.log(user);
                 setError('');
                 navigate('/')
+                form.reset()
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -39,19 +42,36 @@ const Login = () => {
                 setError(errorCode, errorMessage, email);
             });
     }
+    const handleEmail = (e) => {
+        const email = e.target.value;
+        setUserEmail(email);
+    }
+    const handleResetPassword = () => {
+        resetPassword(userEmail)
+            .then(() => {
+                toast.success('please check your email for reset');
+                setError('')
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                setError(errorCode, errorMessage)
+            });
+
+    }
     return (
         <div className="w-2/4 mx-auto p-8 space-y-3 rounded-xl bg-gray-100 dark:text-gray-100">
             <h1 className="text-2xl font-bold text-center">Log In</h1>
             <form onSubmit={handleSignIn} className="space-y-6 ng-untouched ng-pristine ng-valid">
                 <div className="space-y-1 text-sm">
                     <label htmlFor="username" className="block dark:text-gray-400">Enter your Email</label>
-                    <input type="email" name="email" id="username" placeholder="Enter your email" className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
+                    <input type="email" onBlur={handleEmail} name="email" id="username" placeholder="Enter your email" className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
                 </div>
                 <div className="space-y-1 text-sm">
                     <label htmlFor="password" className="block dark:text-gray-400">Password</label>
                     <input type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
                     <div className="flex justify-end text-xs dark:text-gray-400">
-                        <Link href="#">Forgot Password?</Link>
+                        <button onClick={handleResetPassword} href="#">Forgot Password?</button>
                     </div>
                     <div>
                         {error}
