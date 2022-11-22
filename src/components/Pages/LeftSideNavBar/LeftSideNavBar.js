@@ -1,9 +1,10 @@
 import React from 'react';
 
-const LeftSideNavBar = () => {
+const LeftSideNavBar = ({ category }) => {
+    const { name } = category
     return (
-        <div>
-            this is left nav bar
+        <div className='mx-auto'>
+            <button className="btn btn-ghost">{name}</button>
         </div>
     );
 };
