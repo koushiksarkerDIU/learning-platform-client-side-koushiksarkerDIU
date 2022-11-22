@@ -8,8 +8,8 @@ const Courses = () => {
     return (
         <div>
 
-            <div className="grid grid-cols-10">
-                <div className="col-span-2 bg-purple-200 text-center">
+            <div className="grid grid-cols-10 pt-10">
+                <div className="col-span-2 text-center">
                     <h1 className='text-3xl'>Course List </h1>
                     {
                         categoryList.map(category => <LeftSideNavBar key={category.id} category={category}></LeftSideNavBar>)
@@ -17,7 +17,7 @@ const Courses = () => {
 
                 </div>
                 <div className="col-span-8">
-                    <div className='grid grid-cols-2 gap-4'>
+                    <div className='grid grid-cols-2 justify-items-center gap-6'>
                         {
                             categoryList.map(category => <CategoryCard key={category.id} category={category}></CategoryCard>)
                         }
