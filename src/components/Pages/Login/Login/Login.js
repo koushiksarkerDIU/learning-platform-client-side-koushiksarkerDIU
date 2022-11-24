@@ -42,9 +42,9 @@ const Login = () => {
         signInWithGoogle()
             .then((result) => {
                 const user = result.user;
-                console.log(user);
+                // console.log(user);
                 setError('')
-                navigate('/')
+                navigate(from, { replace: true });
             }).catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
