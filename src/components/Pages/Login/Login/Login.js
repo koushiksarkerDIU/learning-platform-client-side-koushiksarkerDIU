@@ -70,7 +70,7 @@ const Login = () => {
 
     }
     return (
-        <div className="w-2/4 mx-auto p-8 space-y-3 rounded-xl bg-gray-100 dark:text-gray-100">
+        <div className="w-2/4 mx-auto p-8 space-y-3 rounded-xl bg-gray-100 dark:text-gray-100 my-10">
             <h1 className="text-2xl font-bold text-center">Log In</h1>
             <form onSubmit={handleSignIn} className="space-y-6 ng-untouched ng-pristine ng-valid">
                 <div className="space-y-1 text-sm">

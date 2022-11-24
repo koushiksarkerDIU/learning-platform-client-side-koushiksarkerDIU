@@ -1,10 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaUser } from 'react-icons/fa';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import DarkModeToggle from "react-dark-mode-toggle";
 
 const Header = () => {
     const { user, logOut } = useContext(AuthContext);
+    const [isDarkMode, setIsDarkMode] = useState(() => false);
     // console.log(user);
     const handleLogOut = () => {
         logOut()
@@ -41,7 +43,6 @@ const Header = () => {
                     <li><Link>Blogs</Link></li>
                     <li><Link>FAQ</Link></li>
                 </ul>
-
             </div>
             <div className='navbar-end'>
                 <div className="dropdown dropdown-end">
@@ -54,7 +55,7 @@ const Header = () => {
                             }
                         </div>
                     </label>
-                    <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content  bg-blue-500 text-white rounded-box w-52">
+                    <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content  bg-gray-300 text-black rounded-box w-52">
                         {
                             user?.uid ? <>
                                 <li><span>{user?.displayName}</span></li>
@@ -66,6 +67,13 @@ const Header = () => {
                         }
                     </ul>
                 </div>
+            </div>
+            <div>
+                <DarkModeToggle
+                    onChange={setIsDarkMode}
+                    checked={isDarkMode}
+                    size={50}
+                />
             </div>
         </div>
     );
