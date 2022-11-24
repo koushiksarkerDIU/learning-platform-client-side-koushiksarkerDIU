@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
@@ -7,7 +7,9 @@ import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 const Register = () => {
     const { createUser, updateUserProfile, verifyEmail, signInWithGoogle } = useContext(AuthContext);
     const [error, setError] = useState('')
-
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/'
     const handleRegister = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -50,6 +52,12 @@ const Register = () => {
             .then((result) => {
                 const user = result.user;
                 // console.log(user);
+                if (user.emailVerified) {
+                    navigate(from, { replace: true });
+                }
+                else {
+                    toast.error('ur email is not verified please verify email')
+                }
                 setError('')
             }).catch((error) => {
                 const errorCode = error.code;

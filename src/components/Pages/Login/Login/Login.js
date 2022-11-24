@@ -9,7 +9,7 @@ const Login = () => {
     const [userEmail, setUserEmail] = useState('')
     const navigate = useNavigate();
     const location = useLocation();
-    const from = location?.state?.from?.pathname || '/';
+    const from = location.state?.from?.pathname || '/';
     const handleSignIn = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -36,7 +36,7 @@ const Login = () => {
             })
             .finally(() => {
                 setLoading(false)
-            })
+            });
     }
     const handleGoogleSignIn = () => {
         signInWithGoogle()
