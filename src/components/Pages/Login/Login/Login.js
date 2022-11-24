@@ -1,32 +1,42 @@
 import React, { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
-    const { signInUser, signInWithGoogle, resetPassword } = useContext(AuthContext);
+    const { signInUser, signInWithGoogle, resetPassword, setLoading } = useContext(AuthContext);
     const [error, setError] = useState('');
     const [userEmail, setUserEmail] = useState('')
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location?.state?.from?.pathname || '/';
     const handleSignIn = (e) => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password);
+        // console.log(email, password);
         signInUser(email, password)
             .then(result => {
-                const user = result.user
-                // console.log(user);
-                setError('');
-                navigate('/')
-                form.reset()
+                const user = result.user;
+                // console.log(user)
+                form.reset();
+                if (user.emailVerified) {
+                    navigate(from, { replace: true });
+                }
+                else {
+                    toast.error(' please verify email to visit')
+                }
+                setError('')
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 setError(errorCode, errorMessage)
-            });
+            })
+            .finally(() => {
+                setLoading(false)
+            })
     }
     const handleGoogleSignIn = () => {
         signInWithGoogle()
