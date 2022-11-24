@@ -68,7 +68,7 @@ const Header = () => {
                     </ul>
                 </div>
             </div>
-            <div>
+            <div className='ml-3'>
                 <DarkModeToggle
                     onChange={setIsDarkMode}
                     checked={isDarkMode}
