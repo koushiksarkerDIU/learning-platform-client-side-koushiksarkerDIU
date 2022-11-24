@@ -9,8 +9,8 @@ const Courses = () => {
         <div>
 
             <div className="grid grid-cols-10 pt-10">
-                <div className="col-span-2 text-center">
-                    <h1 className='text-3xl'>Course List </h1>
+                <div className="col-span-2 text-center mx-3">
+                    <h1 className='text-3xl font-semibold my-5'>Course List </h1>
                     {
                         categoryList.map(category => <LeftSideNavBar key={category.id} category={category}></LeftSideNavBar>)
                     }
