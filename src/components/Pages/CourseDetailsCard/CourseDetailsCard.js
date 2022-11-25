@@ -16,7 +16,7 @@ const CourseDetailsCard = () => {
                     <span className="px-2 py-1 font-bold rounded text-3xl">Course : {name}</span>
                 </div>
                 <div className="mt-3">
-                    <div className="flex my-6">
+                    <div className="flex my-6 flex-col lg:flex-row">
                         <img className='h-48' src={img} alt="" />
                         <div className='ml-5'>
                             <p className="text-xl font-semibold mb-5">{course_curriculum}</p>
@@ -41,7 +41,7 @@ const CourseDetailsCard = () => {
                     </svg>
                         Download Pdf</button>
                 </div>
-                <div className="flex items-center justify-between mt-4">
+                <div className="flex flex-col lg:flex-row gap-4 items-center justify-between mt-4">
                     <p><span className='font-medium'>Ratting:</span> {ratting}</p>
                     <p><span className='font-medium'>Price:</span> ${price}</p>
                     <Link to={`/checkout/${id}`}><button className="btn btn-outline btn-primary">Get Premium Access</button></Link>

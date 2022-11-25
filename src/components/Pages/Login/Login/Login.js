@@ -70,7 +70,7 @@ const Login = () => {
 
     }
     return (
-        <div className="w-2/4 mx-auto p-8 space-y-3 rounded-xl bg-gray-100 dark:text-gray-100 my-10">
+        <div className="w-4/5 lg:w-2/4 mx-auto p-8 space-y-3 rounded-xl bg-gray-100 dark:text-gray-100 my-10">
             <h1 className="text-2xl font-bold text-center">Log In</h1>
             <form onSubmit={handleSignIn} className="space-y-6 ng-untouched ng-pristine ng-valid">
                 <div className="space-y-1 text-sm">
@@ -87,7 +87,7 @@ const Login = () => {
                         {error}
                     </div>
                 </div>
-                <button type='submit' className="block w-1/4 mx-auto p-3 text-center rounded-lg dark:text-gray-900 bg-blue-300">Sign in</button>
+                <button type='submit' className="block lg:w-1/4 mx-auto p-3 text-center rounded-lg dark:text-gray-900 bg-blue-300">Sign in</button>
             </form>
             <div className="flex items-center pt-4 space-x-1">
                 <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
